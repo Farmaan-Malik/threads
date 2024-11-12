@@ -9,6 +9,7 @@ import { Colors } from '@/constants/Colors';
 export default function SearchScreen() {
   const [search, setSearch] = useState('');
   const userList = useQuery(api.users.searchUsers, search === '' ? 'skip' : { search });
+  console.log("data :",userList)
 
   return (
     <View style={styles.container}>

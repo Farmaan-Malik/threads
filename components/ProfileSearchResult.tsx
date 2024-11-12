@@ -1,5 +1,6 @@
 import { Colors } from '@/constants/Colors';
 import { Doc } from '@/convex/_generated/dataModel';
+import { Link } from 'expo-router';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 type ProfileSearchResultProps = {
@@ -8,6 +9,8 @@ type ProfileSearchResultProps = {
 const ProfileSearchResult = ({ user }: ProfileSearchResultProps) => {
   return (
     <View style={styles.container}>
+      <Link href={`/search/profile/${user._id}`} asChild style={styles.link}>
+      <TouchableOpacity>
       <Image source={{ uri: user?.imageUrl }} style={styles.image} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>
@@ -16,6 +19,8 @@ const ProfileSearchResult = ({ user }: ProfileSearchResultProps) => {
         <Text style={styles.username}>@{user.username}</Text>
         <Text style={styles.followers}>{user.followersCount} followers</Text>
       </View>
+      </TouchableOpacity>
+      </Link>
       <TouchableOpacity style={styles.followButton}>
         <Text style={styles.followButtonText}>Follow</Text>
       </TouchableOpacity>
@@ -29,6 +34,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
+  },
+  link:{
+    flex:1,
+    flexDirection:'row',
+    alignItems: 'center',
+    gap: 10,
+
   },
   image: {
     width: 40,
