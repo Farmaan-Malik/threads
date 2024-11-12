@@ -3,11 +3,16 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useOAuth } from '@clerk/clerk-expo';
+import { useQuery } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 
 
-const LoginScreen = () => {
+export default function Index(){
   const { startOAuthFlow } = useOAuth({ strategy: 'oauth_facebook' });
   const { startOAuthFlow: googleAuth } = useOAuth({ strategy: 'oauth_google' });
+
+// const data = useQuery(api.users.getAllUsers);
+// console.log(data)
 
   const handleFacebookLogin = async () => {
     try {
@@ -137,5 +142,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
-
-export default LoginScreen;
